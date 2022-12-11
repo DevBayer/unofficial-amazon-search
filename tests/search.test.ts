@@ -1,4 +1,4 @@
-import {searchAmazon, AmazonSearchResult} from '../src';
+import {AmazonDomainsEnum, AmazonSearchResult, searchAmazon} from '../src';
 
 describe('searchAmazon', () => {
 
@@ -7,6 +7,13 @@ describe('searchAmazon', () => {
       return atLeastOneSponsored || result.sponsored;
     }, false);
   }
+
+  it('search product on amazon spain', async () => {
+    const data = await searchAmazon('usb cable', {
+      domain: AmazonDomainsEnum.AmazonES
+    });
+    expect(data.pageNumber).toBe(1);
+  });
 
   it('should load page 1 by default', async () => {
     const data = await searchAmazon('usb cable');
@@ -32,7 +39,7 @@ describe('searchAmazon', () => {
 
   it('should include sponsored results if given the flag', async () => {
     const data = await searchAmazon('usb cable', {includeSponsoredResults: true});
-    
+
     expect(anySponsored(data.searchResults)).toBe(true);
     expect(data.searchResults.length).toBe(22);
   });
