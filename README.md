@@ -77,6 +77,7 @@ Returns a `Promise<SearchData>`.
 
 - `page` - desired page of results
 - `includeSponsoredResults` - set `true` to include ads
+- `domain` - optional object, you can specify which store attack using a value available on `AmazonDomainsEnum`
 
 ### Interface `SearchData`
 
